@@ -36,7 +36,7 @@ const ProductC = () => {
   const fetchTypeCates = async (cateId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/c/type_cate_by_cate/${cateId}`
+        `${process.env.REACT_APP_API_URL}/c/type_cate_by_cate/${cateId}`
       );
       const data = await response.json();
       setTypeCatesByCate((prev) => ({
@@ -69,7 +69,7 @@ const ProductC = () => {
 
   // Lấy tất cả cate của type_cate
   useEffect(() => {
-    fetch("http://localhost:3000/c/categories_with_type_cate")
+    fetch(`${process.env.REACT_APP_API_URL}/c/categories_with_type_cate`)
       .then((res) => res.json())
       .then((data) => {
         setcate(data);
@@ -81,7 +81,7 @@ const ProductC = () => {
 
   // Lấy cate dựa trên id
   useEffect(() => {
-    fetch(`http://localhost:3000/c/cate/${cate_id}`)
+    fetch(`${process.env.REACT_APP_API_URL}/c/cate/${cate_id}`)
       .then((res) => res.json())
       .then((data) => setinfocate(data));
   }, [cate_id]);
@@ -94,7 +94,7 @@ const ProductC = () => {
     const fetchData = async () => {
       try {
         const products = await fetch(
-          `http://localhost:3000/pr/products-by-cate/${cate_id}?sort=${sortPr}&page=${currentPage}&limit=${itemsPerPage}`
+          `${process.env.REACT_APP_API_URL}/pr/products-by-cate/${cate_id}?sort=${sortPr}&page=${currentPage}&limit=${itemsPerPage}`
         );
         const response = await products.json();
         Setproduct(response.products || response);
@@ -102,7 +102,7 @@ const ProductC = () => {
 
         if (user && user.id) {
           const resFav = await fetch(
-            `http://localhost:3000/pr/user-favorite/${user.id}`
+            `${process.env.REACT_APP_API_URL}/pr/user-favorite/${user.id}`
           );
           const likedProductIds = await resFav.json();
 
@@ -136,7 +136,7 @@ const ProductC = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/pr/toggle-favorite", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/pr/toggle-favorite`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user_id: user.id, pr_id }),
@@ -232,8 +232,8 @@ const ProductC = () => {
         </div>
       ) : (
         /* Nếu không phải thì dùng Link chuyển trang */
-        <Link 
-          to={`/pr_by_cate/${c.id}`} 
+        <Link
+          to={`/pr_by_cate/${c.id}`}
           className={styles.categoryLink}
         >
           {c.name}

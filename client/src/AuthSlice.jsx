@@ -5,7 +5,7 @@ const initialState = {DaDangNhap: false, user: null, token: null, expiresIn: 0, 
 export const fetchCountPrLike = createAsyncThunk(
     'auth/fetchCountPrLike',
     async (userId) => {
-      const response = await fetch(`http://localhost:3000/pr/count-pr-like/${userId}`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/pr/count-pr-like/${userId}`);
       const data = await response.json();
       return data.count; // API trả về số lượng sản phẩm yêu thích
     }
@@ -15,21 +15,21 @@ export const AuthSlice = createSlice({
     name: 'Auth',
     initialState,
     reducers:{
-      
+
 
         checkLogin: (state) => {
             let token = localStorage.getItem('token');
             let user = localStorage.getItem('user');
             let expiresIn = localStorage.getItem('expiresIn');
-        
+
             if (!token || !user || !expiresIn) {
                 state.DaDangNhap = false;
                 return;
             }
-        
+
             let expiresAt = moment().add(Number(expiresIn), 'second');
             let chua_het_han = moment().isBefore(expiresAt);
-        
+
             if (chua_het_han) {
                 state.user = JSON.parse(user);
                 state.token = token;
@@ -72,7 +72,7 @@ export const AuthSlice = createSlice({
         updateCountPrlike : (state, action) =>{
             state.countPrlike += action.payload;
         },
-       
+
     },
     extraReducers: (builder) => {
         builder.addCase(fetchCountPrLike.fulfilled, (state, action) => {

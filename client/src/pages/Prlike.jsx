@@ -29,7 +29,7 @@ export default function Favorite_Pr() {
   const fetchFavoriteUser = async () => {
     try {
       const rs = await fetch(
-        `http://localhost:3000/pr/favorite_user/${user.id}`
+        `${process.env.REACT_APP_API_URL}/pr/favorite_user/${user.id}`
       );
       const favoritePr = await rs.json();
       setpr(favoritePr);
@@ -41,9 +41,9 @@ export default function Favorite_Pr() {
   // Xử lý khi nhấn vào tim để bỏ thích
   const handleToggleFavorite = async (pr_id) => {
     if (!user || !user.id) return;
-  
+
     try {
-      const res = await fetch("http://localhost:3000/pr/toggle-favorite", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/pr/toggle-favorite`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,9 +53,9 @@ export default function Favorite_Pr() {
           pr_id,
         }),
       });
-  
+
       const data = await res.json();
-  
+
       if (data.success) {
         // Cập nhật lại danh sách yêu thích bằng cách xóa sản phẩm vừa unlike
         setpr((prevPr) => prevPr.filter((item) => item.id !== pr_id));
@@ -100,7 +100,7 @@ export default function Favorite_Pr() {
                   </i>
                 </div>
 
-                
+
                 <div className={styles.product_btn}>
                 <div className={styles.pr_xemchitiet}>
                   <button> <Link to={`/chi_tiet_san_pham/${pr.id}`} className={styles.btnxct}>  Xem chi tiết </Link> </button>

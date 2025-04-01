@@ -15,7 +15,7 @@ export default function Comment() {
 
    const BinhLuan = async () => {
     let ngaybl = new Date().toISOString();
-    let url = "http://localhost:3000/binh_luan";
+    let url = `${process.env.REACT_APP_API_URL}/binh_luan`;
 
     if(contentRef.current.value === ''){
         message.error('Vui lòng nhập bình luận')
@@ -26,19 +26,19 @@ export default function Comment() {
             content: contentRef.current.value,
             comment_date: ngaybl
         };
-    
+
         console.log(tt);
-    
+
         let opt = {
             method: "POST",
             body: JSON.stringify(tt),
             headers: { "Content-Type": "application/json" }
         };
-    
+
         try {
             const res = await fetch(url, opt);
             const data = await res.json();
-    
+
             if (res.ok && data.success) {
                 message.success('Bạn đã bình luận thành công');
                contentRef.current.value =''
@@ -50,8 +50,8 @@ export default function Comment() {
             message.error("Có lỗi xảy ra khi gửi bình luận");
         }
     }
-    
-    
+
+
 };
 
   return (
@@ -60,7 +60,7 @@ export default function Comment() {
          <><div className={styles.dgsp}>
          <h3>Bình luận sản phẩm</h3>
        </div>
- 
+
        <textarea className={styles["comment-box"]} type="text" placeholder="" ref={contentRef} />
        <div>
        <input type="hidden" defaultValue={id} ref={idprRef} />
@@ -70,14 +70,14 @@ export default function Comment() {
         <><div className={styles.dgsp}>
          <h3>Bình luận sản phẩm</h3>
        </div>
- 
+
        <textarea className={styles["comment-box"]} type="text" placeholder="" ref={contentRef} />
        <div>
         <p>Bạn cần đăng nhập để bình luận sản phẩm. <Link>Đăng nhập ngay</Link> </p>
-        
+
        </div> </>
     )}
-      
+
     </>
   );
 }

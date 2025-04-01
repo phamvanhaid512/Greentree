@@ -25,15 +25,15 @@ export default function Prdanhchoban() {
     const fetchData = async () => {
       try {
         // Lấy danh sách sản phẩm hot
-        const resHot = await fetch('http://localhost:3000/pr/prhot');
+        const resHot = await fetch(`${process.env.REACT_APP_API_URL}/pr/prhot`);
         const hotData = await resHot.json();
         setPrHot(hotData);
 
         // Nếu có user, lấy danh sách sản phẩm yêu thích của user
         if (user && user.id) {
-          const resFav = await fetch(`http://localhost:3000/pr/user-favorite/${user.id}`);
+          const resFav = await fetch(`${process.env.REACT_APP_API_URL}/pr/user-favorite/${user.id}`);
           const likedProductIds = await resFav.json();
-          
+
           // Tạo object likePr từ dữ liệu API
           const likedStatus = hotData.reduce((acc, pr) => {
             acc[pr.id] = likedProductIds.includes(pr.id);
@@ -56,7 +56,7 @@ export default function Prdanhchoban() {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/pr/toggle-favorite', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/pr/toggle-favorite`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.id, pr_id }),
@@ -71,7 +71,7 @@ export default function Prdanhchoban() {
 
         dispatch(updateCountPrlike(data.liked ? 1 : -1));
         message.success(data.liked ? `Bạn đã thích sản phẩm!` : "Bạn đã hủy thích sản phẩm!");
-        
+
       }
     } catch (error) {
       console.error("Lỗi khi toggle yêu thích:", error);

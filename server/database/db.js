@@ -3,7 +3,7 @@ const mysql = require('mysql2/promise');
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'Haid@5122003',
     database: 'greentree',
     waitForConnections: true,
     connectionLimit: 10, // Giới hạn tối đa 10 kết nối đồng thời

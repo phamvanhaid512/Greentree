@@ -33,7 +33,7 @@ export default function Prdetail() {
 
   useEffect(() =>{
      const fetchCate = async () =>{
-      const res = await fetch(`http://localhost:3000/c/namecate/${id}`);
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/c/namecate/${id}`);
       const data = await res.json();
       setcate(data)
      }
@@ -43,7 +43,7 @@ export default function Prdetail() {
   useEffect(() => {
     const fetchPr = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/pr/detailPr/${id}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/pr/detailPr/${id}`);
         const data = await res.json();
 
         if (data) {
@@ -65,7 +65,7 @@ export default function Prdetail() {
   useEffect(() =>{
     const FetchComment = async () =>{
       try{
-        const res = await fetch(`http://localhost:3000/binh_luan/${id}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/binh_luan/${id}`);
         const data = await res.json()
         setcomment(data)
       }catch (error) {
@@ -78,14 +78,14 @@ export default function Prdetail() {
   useEffect(() =>{
     const fetchprlq = async () =>{
       try{
-        const res = await fetch(`http://localhost:3000/pr/prlq/${pr?.cate_id}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/pr/prlq/${pr?.cate_id}`);
         const data = await res.json()
         setprlq(data)
 
         if (user && user.id) {
-          const resFav = await fetch(`http://localhost:3000/pr/user-favorite/${user.id}`);
+          const resFav = await fetch(`${process.env.REACT_APP_API_URL}/pr/user-favorite/${user.id}`);
           const likedProductIds = await resFav.json();
-          
+
           // Tạo object likePr từ dữ liệu API
           const likedStatus = data.reduce((acc, pr) => {
             acc[pr.id] = likedProductIds.includes(pr.id);
@@ -107,7 +107,7 @@ export default function Prdetail() {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/pr/toggle-favorite', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/pr/toggle-favorite`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.id, pr_id }),
@@ -122,7 +122,7 @@ export default function Prdetail() {
 
         dispatch(updateCountPrlike(data.liked ? 1 : -1));
         message.success(data.liked ? `Bạn đã thích sản phẩm!` : "Bạn đã hủy thích sản phẩm!");
-        
+
       }
     } catch (error) {
       console.error("Lỗi khi toggle yêu thích:", error);
@@ -242,7 +242,7 @@ export default function Prdetail() {
                   value={quantity}
                   onChange={handleChange}
                   onBlur={() => setQuantity(quantity || 1)} // Nếu rỗng, đặt lại thành 1
-                  
+
                 />
                 <button onClick={increaseQuantity}>+</button>
               </div>
@@ -253,7 +253,7 @@ export default function Prdetail() {
 
             <div className={styles["product-info"]}>
               <p className={styles.categories}>
-                <strong>Danh mục:</strong>{" "} <Link to={`/pr_by_cate/${cate.cate_id}`}>{cate.cate_name}, </Link> 
+                <strong>Danh mục:</strong>{" "} <Link to={`/pr_by_cate/${cate.cate_id}`}>{cate.cate_name}, </Link>
                 {type_cate.length > 0
                   ? type_cate.map((tc, index) => (
                       <span key={index}>
@@ -284,7 +284,7 @@ export default function Prdetail() {
               </div>
           <div className={styles.ochung}>
             <div className={styles.o1}>
-            
+
             <div className={styles["review-container"]}>
             <div className={styles.danhgia}>
                 <h3>Bình luận từ người dùng khác</h3>
@@ -292,14 +292,14 @@ export default function Prdetail() {
                 {
                   comment.length > 0 ?(
                     comment.map((cmt, index) => (
-                      <div className={styles["user-review"]} key={index}> 
+                      <div className={styles["user-review"]} key={index}>
                   <div className={styles.user}>
                     <strong>{cmt.username}</strong> <span className={styles.stars}></span>
                   </div>
                   <div className={styles.date}>{moment(cmt.comment_date).format('H:mm YYYY-MM-DD')}</div>
                   <div className={styles.comment}>
                     <p>{cmt.content}</p>
-                  </div> 
+                  </div>
                 </div>
                     ))
                   ):(
@@ -307,14 +307,14 @@ export default function Prdetail() {
                       <p>Chưa có bình luận nào về sản phẩm này bạn hãy là người đâu tiên bình luận</p>
                     </div>
                   )
-                }    
-                
+                }
 
-                
-  
-                
+
+
+
+
               </div>
-             
+
             </div>
             <div className={styles.o2}>
                     <Comment />
@@ -334,20 +334,20 @@ export default function Prdetail() {
                       <p>SẢN PHẨM LIÊN QUAN</p>
                     </div>
                   </div>
-          
+
                   <div className={styles.products}>
                     {prlq.map((pr) => (
                       <div className={styles.product} key={pr.id}>
                         <div className={styles.product_img}>
                           <img src={pr.images ? pr.images.split(',')[0] : '/default-image.jpg'} alt={pr.name} />
                         </div>
-                        
+
                         <div className={`${styles.pr_tim} ${likePr[pr.id] ? styles.liked : ''}`} onClick={() => toggleFavorite(pr.id)}>
                         <i style={{ color: likePr[pr.id] === true ? "red" : "black" }}>
                             <FontAwesomeIcon icon={faHeart} />
                           </i>
                         </div>
-                        
+
                         <div className={styles.product_btn}>
                           <div className={styles.pr_xemchitiet}>
                             <button> <Link to={`/chi_tiet_san_pham/${pr.id}`} className={styles.btnxct}>  Xem chi tiết </Link> </button>
@@ -364,7 +364,7 @@ export default function Prdetail() {
                     ))}
                   </div>
                 </section>
-              </div>      
+              </div>
 
     </div>
   );

@@ -30,8 +30,8 @@ const Header = () => {
   const [isInputFocused, setInputFocused] = useState(false);
 
   useEffect( () =>{
-    fetch(`http://localhost:3000/pr/pr`).then(res => res.json()).then(data => setproduct(data))
-   
+    fetch(`${process.env.REACT_APP_API_URL}/pr/pr`).then(res => res.json()).then(data => setproduct(data))
+
   }, [])
 
   // lay du lieu nguoi dung nhap vao
@@ -60,14 +60,14 @@ const Header = () => {
 
   // Fetch danh mục
   useEffect(() => {
-    fetch("http://localhost:3000/c/cate")
+    fetch(`${process.env.REACT_APP_API_URL}/c/cate`)
       .then((res) => res.json())
       .then((data) => setCate(data));
   }, []);
 
   // Fetch đặc điểm theo danh mục
   const fetchCharacteristics = (cate_id) => {
-    fetch(`http://localhost:3000/c/characteristics/${cate_id}`)
+    fetch(`${process.env.REACT_APP_API_URL}/c/characteristics/${cate_id}`)
       .then((res) => res.json())
       .then((data) => setCharacteristics(data));
   };
@@ -76,7 +76,7 @@ const Header = () => {
   // Khi click vào icon tìm kiếm
   const handleSearchClick = () => {
     setShowSearch(true);
-    
+
   };
 
   // Khi mất focus thì ẩn ô input
@@ -119,19 +119,19 @@ const Header = () => {
               {
                DaDangNhap === true && user?.role === 1 ?(
                 <div >
-                <Link to={`/user/${user.id}`} className={styles.user}> 
-                <img width={'35px'} height={'35px'}  src={'/images/user_circle.webp'} /> 
+                <Link to={`/user/${user.id}`} className={styles.user}>
+                <img width={'35px'} height={'35px'}  src={'/images/user_circle.webp'} />
                 <p>{user?.username.length > 4 ? user.username.slice(0, 4) + "..."  : user.username }</p>
                 </Link>
                 </div>
 
-               ):( 
+               ):(
                 <>
                 <Link to={'/dangnhap'}>Đăng Nhập</Link>
                 <Link to={'/dangky'}>Đăng Ký</Link>
                 </>
               )}
-            
+
             </div>
           </div>
         </div>
@@ -220,12 +220,12 @@ const Header = () => {
         </div>
       </div>
 
-      
+
   {/* Ô tìm kiếm */}
   {ShowSearch && (
         <div className={styles.overlay} >
           <div className={styles.close} >
-          <button onClick={handleclose}>X</button>  
+          <button onClick={handleclose}>X</button>
           </div>
         <div className={styles.searchBox}>
           <input
@@ -261,11 +261,11 @@ const Header = () => {
       </div>
 
         </div>
-      )}  
+      )}
 
 
     </header>
-       
+
   );
 };
 

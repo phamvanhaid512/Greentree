@@ -29,7 +29,7 @@ export default function FormLogin(){
             SetPasswordErr("Vui lòng nhập email")
         }
         else{
-            let url = `http://localhost:3000/dangnhap`;
+            let url = `${process.env.REACT_APP_API_URL}/dangnhap`;
             let tt = {email, password};
             let opt = {
                 method: 'POST', body: JSON.stringify(tt), headers: {'Content-Type': 'application/json'}
@@ -61,8 +61,8 @@ export default function FormLogin(){
         <div className={styles.Form_login}>
         <div className={styles.container_form_login}>
             <div className={styles.tabs}>
-                <Link to={'/dangnhap'} className={styles.active} >Đăng Nhập</Link> 
-               <Link to={'/dangky'}>Đăng Ký</Link> 
+                <Link to={'/dangnhap'} className={styles.active} >Đăng Nhập</Link>
+               <Link to={'/dangky'}>Đăng Ký</Link>
             </div>
             <h2>Đăng Nhập</h2>
             <p>{Err}</p>

@@ -1,13 +1,13 @@
 var express = require('express');
 var cors = require('cors');
 var app = express();
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 // Middleware
 var corsOptionsDelegate = function (req, callback) {
-    var corsOptions= { origin: true };
-    callback(null, corsOptions);
-  }
+  var corsOptions = { origin: true };
+  callback(null, corsOptions);
+}
 
 
 
@@ -23,13 +23,13 @@ app.use(express.json());
 app.use(cors(corsOptionsDelegate))
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH , DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('Access-Control-Expose-Headers', 'Authorization');
-    next();
-  
-  })
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH , DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Expose-Headers', 'Authorization');
+  next();
+
+})
 
 
 app.use('/', indexRouter);
@@ -40,5 +40,5 @@ app.use('/admin', adminRouter);
 
 // Bắt đầu server
 app.listen(port, () => {
-    console.log(`Server đang chạy ở Port ${port}`);
+  console.log(`Server đang chạy ở Port ${port}`);
 });

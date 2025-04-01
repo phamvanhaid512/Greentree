@@ -26,7 +26,7 @@ export default function Register() {
       return SetErr("Nhập lại mật khẩu không đúng");
     }
 
-    let url = `http://localhost:3000/dangky`;
+    let url = `${process.env.REACT_APP_API_URL}/dangky`;
     let tt = { username, email, phone, password };
     let opt = {
       method: "POST",

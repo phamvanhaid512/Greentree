@@ -1,13 +1,13 @@
 const mysql = require('mysql2/promise');
 
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'Haid@5122003',
-    database: 'greentree',
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'haid5122003',
+    database: process.env.DB_NAME || 'greentree',
     waitForConnections: true,
-    connectionLimit: 10, // Giới hạn tối đa 10 kết nối đồng thời
-    queueLimit: 0
+    connectionLimit: process.env.DB_CONNECTION_LIMIT || 10, // Giới hạn tối đa 10 kết nối đồng thời
+    queueLimit: process.env.DB_QUEUE_LIMIT || 0
 });
 
 // Kiểm tra kết nối

@@ -1,0 +1,329 @@
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    /* padding: 20px; */
+    margin-bottom:20px;
+  
+    
+}
+.oo{
+    display: flex;  
+    height:auto;
+  
+    margin-bottom: 30px;
+    margin-top:10px;
+    padding-bottom:20px;
+
+}
+.ochung{
+    display:flex;
+    
+    
+    
+}
+.o1{
+    width:50%;
+  
+}
+.o2{
+    width:50%;
+    margin-left:20px;
+}
+.odau{
+    width:60%;
+}
+.odau img{
+    margin-bottom:20px;
+
+}
+.odau .abc img{
+    border-radius:20px;
+    margin-right:10px;
+}
+.ocuoi{
+    margin-left:20px;
+    width:60%;
+    font-size:20px;
+    line-height:30px;
+}
+
+.ocuoi p{
+    margin: 10px 0;
+}
+.cay{
+    font-size:30px;
+    line-height: 35px;
+    color: #224229;
+}
+.masp{
+    font-size:18px;
+    margin: 10px 0;
+}
+
+
+.rate{
+    font-size:18px;
+    
+}
+.trangthai{
+    font-size:18px;
+    
+}
+.mota{
+    font-size:18px;
+    
+}
+.dongmota{
+    font-size:18px;
+    margin-bottom:20px;
+    line-height:40px;
+}
+.chieucao{
+    font-size:18px;
+    
+}
+.duongkinh{
+    font-size:18px;
+    
+}
+.loaichau{
+    font-size:18px;
+    
+}
+.doam{
+    font-size:18px;
+    
+}
+.anhsang{
+    font-size:18px;
+    
+}
+.loiich{
+    font-size:18px;
+    
+    line-height:24px;
+}
+.background{
+    background-color: #FCF9F3;
+}
+
+
+
+
+.button-container {
+    display: flex;
+    gap: 20px;
+    padding-top:10px;
+    padding-bottom:30px;
+    
+}
+
+.btn-cart {
+    background-color: #224229;
+    font-size:20px;
+    width: 200px;
+    margin: 0;
+    height: auto;
+}
+
+
+
+.review-container {
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+    line-height:30px;
+}
+.product-title {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom:20px;
+    
+}
+.product-title span {
+    color: green;
+}
+.stars {
+    margin-bottom:20px;
+    margin-left:10px;
+}
+.starss {
+    margin-bottom:20px;
+    font-size:18px;
+}
+.user-review {
+    margin-top: 10px;
+    font-size:18px;
+    line-height:35px;
+}
+.user{
+    margin-bottom:10px;
+}
+.date{
+    margin-bottom:8px;
+}
+.rating-input {
+    font-size: 20px;
+    color: gray;
+    cursor: pointer;
+    margin-top:10px;
+    font-size:18px;
+}
+.comment-box {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height:120px;
+    font-size:18px;
+    margin-bottom:10px;
+}
+.submit-btn {
+    background: green;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size:18px;
+    margin-bottom:40px;
+}
+.dgsp{
+    
+    font-size:25px;
+}
+.danhgia{
+    font-size:25px;
+}
+
+        .title{
+            font-size:25px;
+            line-height:45px;
+        }
+
+        .counter {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #f8f6f2;
+            height:44px;
+        }
+        .counter #quantity { 
+            width:30px;
+            height:44px;
+            border-right:1px solid #ddd;
+            border-left:1px solid #ddd
+        }
+        .counter button {
+            border: none;
+            background: none;
+            font-size: 20px;
+            padding: 8px 10px;
+            cursor: pointer;
+            color: #2f402f;
+            width:31.35px;
+            height:44px;
+        }
+        .counter input {
+            width: 40px;
+            text-align: center;
+            border: none;
+            font-size: 18px;
+            background: transparent;
+            color: #2f402f;
+        }
+
+
+
+        .product-info {
+            max-width: 600px;
+        }
+        .sku {
+            font-weight: bold;
+            border-top:1px solid #ddd;
+            border-bottom:1px solid #ddd;
+            padding:5px 0px;
+            margin-bottom:10px;
+            color:#00791C;
+            font-size:18px; 
+        }
+        .categories {
+            font-size: 18px;
+            color: #224229;
+            line-height: 1.6;
+            margin-bottom:15px;
+            
+        }
+
+        .categories a:hover{
+            color: #00791C;
+        }
+        .social-icons {
+            margin: 20px 0;
+          
+        
+        }
+        .social-icons a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            background: #eee;
+            text-decoration: none;
+            color: #666;
+            font-size: 16px;
+            margin-right:30px;
+        }
+        .social-icons img{
+            width:50px;
+            
+           
+        }
+        .return-policy {
+            display: flex;
+            align-items: center;
+         
+           
+        }
+        .return-policy img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .return-policy p{
+            margin: 0;
+        }
+        .return-policy-text {
+            font-size: 18px;
+            color: black;
+        }
+        .return-policy-text strong {
+            font-size: 18px;
+            color: #00791C;
+        }
+        .yeucau{
+            font-size:18px;
+        }
+        .yeucau a{
+            text-decoration: none;
+            color:#00791C;
+        }
+        .yeucau a:hover{
+            color:#ffa200;
+        }
+
+
+        .dg{
+            height:97px;
+        }
+        .abc img:hover {
+            transform: scale(1.1);
+        }
+
+        

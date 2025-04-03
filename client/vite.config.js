@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: process.env.REACT_APP_URL,
     port: 3500, // Lấy giá trị từ .env, nếu không có thì mặc định là 5173
   },
 })

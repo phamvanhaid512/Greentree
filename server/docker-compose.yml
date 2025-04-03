@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+      web-kinhte-quan5-service-stag:
+            container_name: do-an-tot-nghiep
+            env_file:
+                  - ./env/.env.dev
+            environment:
+                  NODE_ENV: develop
+            ports:
+                  - "3000:3000"
+            restart: always
+            build: .

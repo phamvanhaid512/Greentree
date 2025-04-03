@@ -13,6 +13,7 @@ RUN npm install
 # Copy toàn bộ source code vào container
 COPY . .
 
+ARG DOCKER_ENV=develop
 ENV NODE_ENV=$DOCKER_ENV
 # Expose cổng 5000
 EXPOSE 3000
